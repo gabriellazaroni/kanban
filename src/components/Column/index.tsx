@@ -3,17 +3,16 @@ import { CardType } from "../../data";
 import { Card } from "../Card";
 import { DropIndicator } from "../Dropindicator";
 import { AddCard } from "../AddCard";
-import { ColumnWrapper, Header } from "./styles";
+import { CardContainer, ColumnWrapper, Header, TitleColumn } from "./styles";
 
 interface ColumnProps {
   title: string;
-  headingColor: string;
   column: string;
   cards: CardType[];
   setCards: React.Dispatch<React.SetStateAction<CardType[]>>;
 }
 
-export const Column: React.FC<ColumnProps> = ({ title, headingColor, cards, column, setCards }) => {
+export const Column: React.FC<ColumnProps> = ({ title, cards, column, setCards }) => {
   const [active, setActive] = useState(false);
 
   const handleDragStart = (e: DragEvent<HTMLDivElement>, card: CardType) => {
@@ -95,20 +94,20 @@ export const Column: React.FC<ColumnProps> = ({ title, headingColor, cards, colu
   return (
     <ColumnWrapper>
       <Header>
-        <h3 style={{ color: headingColor }}>{title}</h3>
+        <TitleColumn>{title}</TitleColumn>
       </Header>
-      <div
+      <CardContainer
+        active={active}
         onDrop={handleDragEnd}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
-        style={{ background: active ? 'rgba(38,38,38,0.5)' : 'transparent', height: '100%' }}
       >
         {filteredCards.map((c) => (
           <Card key={c.id} {...c} handleDragStart={handleDragStart} />
         ))}
         <DropIndicator beforeId={null} column={column} />
         <AddCard column={column} setCards={setCards} />
-      </div>
+      </CardContainer>
     </ColumnWrapper>
   );
 };

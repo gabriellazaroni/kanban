@@ -11,3 +11,8 @@ export const CardContainer = styled(motion.div)`
     cursor: grabbing;
   }
 `;
+
+export const Text = styled.p`
+  font-size: 14px;
+  color: #f4f4f5;
+`

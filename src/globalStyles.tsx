@@ -30,19 +30,6 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;
     font-family: "Inter", sans-serif;
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.3;
-      z-index: 1;
-      pointer-events: none;
-      background-image: url("https://www.transparenttextures.com/patterns/black-orchid.png");
-      background-repeat: repeat;
-    }
   }
 
   button {
